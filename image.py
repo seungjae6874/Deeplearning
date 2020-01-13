@@ -16,7 +16,7 @@ def print_typeshape(img):
     print("Shape is %s" %(img.shape,))
 
 #Load an image
-cat = imread("./mygitML/cat.jpg")
+cat = imread("./cat.jpg")
 print_typeshape(cat)
 
 #Plot loaded image
@@ -26,10 +26,31 @@ plt.title("ORIGINAL CAT")
 plt.show()
 
 #load +cast to float?
-cat2 = imread("./mygitML/cat.jpg").astype(np.float)
+cat2 = imread("./cat.jpg").astype(np.float)
 print_typeshape(cat2)
 #plot
 plt.figure(0)
 plt.imshow(cat2)
 plt.title("Original image with imread.astype(np.float)")
 plt.show()
+
+#Load
+cat3 = imread("./cat.jpg").astype(np.float)
+print_typeshape(cat3)
+#plot
+plt.figure(0)
+plt.imshow(cat3/255.)
+plt.title("Original image with (np.float/255.")
+plt.show()
+
+#resize
+catsmall = imresize(cat, [100,100,3])
+print_typeshape(catsmall)
+#plot
+plt.figure(0)
+plt.imshow(catsmall)
+plt.title("Resize cat small")
+plt.show()
+
+
+
