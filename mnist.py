@@ -59,4 +59,8 @@ for i in range(niter):
     ybatch = mnist.train.labels[currindices, :]
     print("Shape of xbatch is %s" %(xbatch.shape,))
     print("Shape of ybatch is %s" %(ybatch.shape,))
-    
+
+
+#data를 한줄 vector로 펴서 차곡차곡 잘라서 학습시키는 개념을 mnist를 사용해서
+#연습해 본것이다
+
