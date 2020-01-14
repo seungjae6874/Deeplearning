@@ -4,7 +4,7 @@ import os
 from scipy.misc import imread, imresize
 import matplotlib.pyplot as plt
 print ("PACKAGES LOADED")
-'''
+
 #Print Current Folder
 cwd = os.getcwd()
 print("Current folder is %s" %(cwd))
@@ -16,7 +16,7 @@ def print_typeshape(img):
     print("Shape is %s" %(img.shape,))
 
 #Load an image
-cat = imread("./cat.jpg")
+cat = imread("./data/cat.jpg")
 print_typeshape(cat)
 
 #Plot loaded image
@@ -26,7 +26,7 @@ plt.title("ORIGINAL CAT")
 plt.show()
 
 #load +cast to float?
-cat2 = imread("./cat.jpg").astype(np.float)
+cat2 = imread("./data/cat.jpg").astype(np.float)
 print_typeshape(cat2)
 #plot
 plt.figure(0)
@@ -35,7 +35,7 @@ plt.title("Original image with imread.astype(np.float)")
 plt.show()
 
 #Load
-cat3 = imread("./cat.jpg").astype(np.float)
+cat3 = imread("./data/cat.jpg").astype(np.float)
 print_typeshape(cat3)
 #plot
 plt.figure(0)
@@ -52,6 +52,13 @@ plt.imshow(catsmall)
 plt.title("Resize cat small")
 plt.show()
 
+
+#plot
+horse = imread("./data/horse.jpeg")
+plt.figure(0)
+plt.imshow(horse)
+plt.title("Original image of the Horse")
+plt.show()
 
 #Grayscale
 
@@ -71,7 +78,7 @@ plt.imshow(catsmallgray, cmap=plt.get_cmap("gray"))
 plt.title("[imshow] Gray image")
 plt.colorbar()
 plt.show()
-'''
+
 
 #see what inside in this folder
 cwd = os.getcwd()

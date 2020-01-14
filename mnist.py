@@ -11,7 +11,7 @@ print("Tensorflow version is %s" %(tf.__version__))
 '''
 #Download MNIST
 
-mnist = input_data.read_data_sets('./',one_hot=True)
+mnist = input_data.read_data_sets('./data',one_hot=True)
 
 '''
 def print_np(x):
