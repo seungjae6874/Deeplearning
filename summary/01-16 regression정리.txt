@@ -1,0 +1,50 @@
+softmax operation = 모든 값에 expo를 하고 곱함/ 모든 값을 expo해서 더함
+
+One hot coding이란?
+
+target 값에 대해
+내가 원하는 값만 1이고 나머지는 0으로 처리한 coding
+
+cross entropy function의 값을 줄이겠다는 것은 내가 갖고 있는 값을 제외한
+나머지 index의 값은 고려하지 않는다.
+즉 내 타겟값만 1로 두고 나머지는 0으로 두겠다.
+
+class 100개있는데 3번째 인덱스 속한다고 가정 
+->이는 내가 가진 클래스가 3번째 class 이므로
+ 3번째 클래스의 숫자만 높이고
+나머지 99개 클래스는 신경쓰지 않겠다.
+이것이 cross entropy
+
+
+
+----------
+cross entropy와 squared loss 함수의 차이
+
+분류 문제 -> cross entropy가 효과적
+
+
+----------------------
+용어 정리
+
+epoch와 batch, iteration
+
+1. epoch = 1epoch는 인공신경망에서 전체 데이터 셋에 대해 foward pass/ backward pass 과정을
+거친 것을 말한다.
+즉 , 전체 데이터 셋에 대해 한번의 학습만을 완료한 상태
+
+ex) epoch가 40이면 forward backward pass를 통해 데이터셋 전체를 40번 학습 시킴
+epoch를 적절히 = 작으면 underfittin가능, 크면 overfitting 발생 가능
+
+2. batch
+bacth 사이즈는 한번의 batch마다 내가 임의로 설정한 data sample의 size이다.
+mini batch라는 표현은  나눠진 데이터 셋을 의미
+
+3. iteration은 epoch를 분할하여 실행하는 횟수이다.
+
+memory의 한계와 속도를 고려하여 이렇게 epoch를 batchsize를 정하여 
+epoch를 iteration단위로 나누어서 실행한다.
+
+
+
+
+
