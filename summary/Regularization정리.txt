@@ -1,0 +1,66 @@
+Regularization
+정규화의 목적은 Overfitting을 막는것!
+
+과적합이란?? 학습 data를 너무 맹신하여 train 데이터는 잘 맞추면서 test데이터를 잘 맞추지
+못하는 비유-> 모의고사 잘푸는데 수능 잘 못푸는 현상
+
+우리는 underline function을 실제 알지 못하므로 trainset error와 test sete error의 차이를 통해 해결해나가야한다.
+
+대부분의 과적합은 data noise로 인해 발생한다 -> noise란 random measurement error
+
+Overfitting을 막기 위해서는 
+1. 더많은 data set을 구한다. 
+2. 적절한 능력을 작는 model을 사용한다
+3. 앙상블 -> 다양한 모델들의 결과를 통해 평균을 내어 선택하는 것 ( 앙상블을 통해 얻어진 결과들 중에서 output이 가장 많이 나오는 걸 선택)
+
+4. Dropout, Drop connect, batch Nomalizatoin
+
+* 얼리 스타핑은 validation error(모의고사 error)가 감소하다가 갑자기 다시 증가하게 되는 결과 발생시에 학습을 stop 시키는 것
+
+* Weight- delay는 parameter의 크기에 limit을 두어서 막는것
+
+* Drop out 은 한 layer(층)에서 몇몇 Node 를(랜덤 선택) Off 시켜서 (학습시에는 사용하지 않는것) 실제 test시에는 다시 On 해야함
+
+* Drop connect는 node를 off하지 않고 노드와 weight를 unconnect 시킨다. 노드에 가중치를 부여하지 않는것
+
+*Batch Normaliztion은 learning rate을 늘려도 된다. 가장 중요
+
+lr을 조금씩 조금씩 작은 값에서 큰값으로 늘려나간다.
+
+기계학습의 generalize의 최선은 more data를 갖는 것이다.
+
+unsupervised 는 비지도 학습 입력은 주어지되 출력은 안줌
+supervised는 지도학습 입력과 출력 모두 주어진다.
+
+Relu는 input이 0보다 작으면 0으로 다음 layer에 넘기고 0과 1사이 값이면 그 값 그대로 다음 layer에 넘긴다 why? vanishing gradient를 막기 위해 기울기가 점점 감소하는것을 방지
+
+bagging이란 높은 분산을 낮은 분산으로 만드는것
+
+boosting이란 학습모델을 계속 붙여나가면서 upgrade시키는것
+
+Adversarial Training은 인간이 못느낄 작은  noise를 주어 output에 변화를 주는 것이다!
+(기울기가 매우 가파름)
+***********************************************************************************************************
+MCTS 몬테카를로 TREE SEARCH
+
+바둑처럼 2명 플레이어가 번갈아가며 게임할 때 내가 이길 수 있는 경우의수를 미리 생각
+
+RL POLICY는 알파고끼리 대결시킨다. 이기면 이긴 판에 1을 주어 + 지면 진판을 -1로 두어서 -
+
+MCTS의 조건 은
+1) Min,Max가 존재
+2) 게임 규칙이 존재
+3) 게임 길이 제한
+
+MCTS의 알고리즘 -> SELECTION -> EXPANSION -> SIMULATOIN -> BACKPROPAGTION
+
+selection은 어떤 자식노드로 갈 지를 선택(내가 이길 수 있는)
+expansion은 어떤 노드를 선택한 후 그 노드가 leaf이면 자식 노드를 더 확장하는 것
+
+simulation은 expansion으로 만든 노드로부터 game을 실행해서 끝날때 까지 진행
+
+역전파는 트리의 root로 다시 올라가서 이길 확률을 증가시키는 것
+
+
+
+ 
