@@ -1,0 +1,51 @@
+Optimization 방법론
+
+1.Gradient Descent 란 어떤 함수에 대해서 최소점을 찾는 것
+내 parameter의 기울기를 알고 cost를 최소화하는 기울기를 찾아가자
+
+Batch gradient descent는 모든 data 기울기를 구하고 평균
+
+Stochastic은 한번에 하나 data의 기울기만 구한다.
+
+Mini batch는 중간 갯수 정도의 data에서의 기울기를 구한다. 2의 지수승 으로 적절히
+
+* 적절한 learning rate을 정하는 방법
+
+1. Momentum -> 이전 momentum + 현재 gradient를 다음 gradient로 선언
+즉) 이전 gradient를 다음 graident에 활용
+
+2. Nesterov accelerated graident
+
+* Adagrad 는 learning rate 스케줄링으로써 모든 parameter마다 learning rate을 바꿔준다,
+
+분자에 G -> gradient의 제곱이 있어서 세타(learning rate)가 계속 작아지는 현상 발생
+
+*이를 보완하기 위해 Adadelta
+-> 식에 입실론을 넣어 초기값이 0임을 막고 Exponential moving average를 이용한다.
+
+RMSprop은 global learning rate 에이다를 사용한다.
+
+********
+Adam은 learning rate과 momentum을 합친 adaptive optimize 방식
+
+모멘텀에 bias를 보정해 주는 식이 추가된다.
+
+또한 adam에서 입실론의 초기값이 e^-8정도 인데 사실 e^-4정도가 적당
+
+왠만해서는 adam사용해서 optimize -> momentum을 사용하는 방법이므로
+싫으면 RMSprop을 통해 직전기울기 사용하지 않고, global learning rate 사용
+
+ 
+RBM (Restricted Boltzmann Machine)
+1. Energy-based models = 대표적 비 지도학습 모델이다
+
+x는 입력 이미지이고 E(x)는 에너지에 반비례한다.
+Z는 normal parameter
+
+v = visible layer로써 현재 주어진 입력 이미지
+h = hidden으로써 학습을 통해 생성되는 다음 layer
+
+Restricted는 v끼리 연결 no, h끼리 연결 no 대신 v와 h 끼리만 연결
+
+확률 을 구하는 것이 매우 중요 P(v, h|세타) v와 h 쌍을 세타가 주어졌을 때 확률구하기
+
