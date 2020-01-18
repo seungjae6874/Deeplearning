@@ -1,4 +1,9 @@
 Regularization
+: 학습에서 발생하는 에러가 아닌, 평가를 위한 테스트상에서 발생하는 error
+즉 (generalization error)를 줄이기 위하여 학습 알고리즘을 수정해나가는 기법
+Generalization이란 train(학습)에 사용되지 않은 데이터set을 활용하여 평가하는 것이다.
+즉 test와 train data를 별도로 두고 학습하는것.
+
 정규화의 목적은 Overfitting을 막는것!
 
 과적합이란?? 학습 data를 너무 맹신하여 train 데이터는 잘 맞추면서 test데이터를 잘 맞추지
@@ -17,13 +22,21 @@ Overfitting을 막기 위해서는
 
 * 얼리 스타핑은 validation error(모의고사 error)가 감소하다가 갑자기 다시 증가하게 되는 결과 발생시에 학습을 stop 시키는 것
 
-* Weight- delay는 parameter의 크기에 limit을 두어서 막는것
+* Weight- decay는 parameter의 크기에 limit을 두어서 막는것
+즉 , weight들의 값이 증가하는 것을 제한함으로써, 모델의 복잡도를 감소시킴.
+왜냐면 모델이 복잡해질 수록 weight들이 증가하게 되는데 이는 점점 학습데이터의
+영향을 많이 받아서 train set에 맞춰진 모델로 진행되어가는 것이다.
+이를 'local noise'라고 하고 이를 막기위해서 weight decay를 하는 것.
 
 * Drop out 은 한 layer(층)에서 몇몇 Node 를(랜덤 선택) Off 시켜서 (학습시에는 사용하지 않는것) 실제 test시에는 다시 On 해야함
 
 * Drop connect는 node를 off하지 않고 노드와 weight를 unconnect 시킨다. 노드에 가중치를 부여하지 않는것
 
 *Batch Normaliztion은 learning rate을 늘려도 된다. 가장 중요
+분포의 mean = 0, 분산 variance = 1이 되도록 정규화하는 것.
+그리고 나서 각 배치 정규화 단계마다 확대 scale과 이동shit를 수행
+
+
 
 lr을 조금씩 조금씩 작은 값에서 큰값으로 늘려나간다.
 
