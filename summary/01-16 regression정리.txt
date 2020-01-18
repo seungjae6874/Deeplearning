@@ -8,6 +8,23 @@ One hot encoding이란?
 target 값에 대해
 내가 원하는 값만 1이고 나머지는 0으로 처리한 coding
 
+Cross - entropy란?
+- 딥러닝에서 cost function으로 사용하는 방법인데 수렴의 속도가 빨라서 좋다
+cross-entropy를 알기 위해서는
+1) information - 놀람의 정보 즉, 정보량 h(x) = -logP(x)로 선언
+P(x)는 확률이다.
+
+2) entropy는 이런 정보량의 평균
+
+즉 확률변수의 평균 정보량 = 놀람의 평균적인 정도 = 불확실성의 정도
+entropy = E(-log(Q(x))) - E(-log(P(x)))에서 E(-log(Q(x)))를 minimize해야한다.
+
+이때의 E(-log(Q(x)))를 cross entropy라고 부른다.
+
+
+3) KL - divergence = 두 entropy의 거리 = 상대적 entropy = 두 entropy의 차이
+이제 KL-divergence를 minimize하려면 E
+
 cross entropy function의 값을 줄이겠다는 것은 내가 갖고 있는 값을 제외한
 나머지 index의 값은 고려하지 않는다.
 즉 내 타겟값만 1로 두고 나머지는 0으로 두겠다.
