@@ -1,0 +1,67 @@
+파이토치관련 퀴즈
+오답정리
+1. torch는 19년 5월기준 1.1버전이 가장 최신
+numpy는 scientific computing 관련 편의기능을 제공하는 라이브러리
+torchvision은 pytorch에서 이미지 데이터 로드와 관련된
+여러가지 편리한 함수들을 제공하는 라이브러리
+
+matplotlib는 데이터 시각화를 위한 다양한 기능제공라이브러리
+
+2.
+tensor.torch의 사칙연산은 torch.Tensor간이나 torch.Tensor와 Python의 스칼라 값과만 연산이 가능
+따라서 Numpy의 ndarray와의 연산이 불가능하고
+torch.cuda.Tensor와의 연산은 불가능하기에  ndarray나 cuda.Tensor와의 자료형을 일치시켜준 후에 연산해야한다.
+ex) a = np.random.rand(2,3) 이면 이건 ndarray
+    b = torch.rand(2,3) -> torch.Tensor이다.
+따라서 a = torch.tensor(a)로 자료형을 바꾸어 주면 연산 가능
+         b = b.numpy()
+
+* Numpy의 ndarray와 마찬가지로 브로드캐스팅 적용 가능 #브로드캐스팅이란 어떤 조건만 만족하면 모양이 다른 배열끼리도 연산가능
+ex) a = np.array([1,2,3])과 + 5를 하면 이 5가 스칼라값이기에 브로드캐스팅이 가능하여 a = [6,7,8]이 된다.
+
+*Tensor는 다차원 배열을 처리하기 위한 가장 기본의 자료형이다.
+
+
+
+Linear Regression문제
+
+1. requires_grad = True라는 설정은 학습할것이라는 것을 선언, gradient를 자동으로 업데이트하라는 의미
+2. cost 계산시 손실함수로 mse사용 가능
+3. optimizer.zero_grad()는 pytorch에서 backpropagation 계산할때마다 gradient를 누적하기 때문에 gradient를 0으로 초기화한다는 의미
+4. cost.backward()는 gradient를 계산하겠다는 의미이다. backward()로써 미분을 통해 기울기를 구한다는 것.
+5. optimizer.step은 학습에 필요한 parameter를 업데이트한다는 뜻이다 즉, hypo를 update하는 것이 optimzer.step
+
+
+*다중 분류 문제는 보통 softmax함수를 사용하고, 
+일반적을 분류모델을 만들 떄 활성화함수는 Cross-Entropy Loss를 사용합니다.
+하지만 간단한 이진분류의 경우에는 하나의 출력노드로 0과 1사이의 Sigmoid함수를 통해 간단한 연산이 가능합니다.
+
+
+mnist문제에서 28*28이미지를 512개의 히든 레이어 뉴런으로 구성된 멀티퍼셉트론 모델이용하여 10개의 클래스로 구분하는 모델을 구현시에는
+
+class MLP(nn.Module):
+	def __init__(sefl, N) : N은 분류된 클래스의 개수입니다.
+	self.layer1 = nn.Sequential(
+		nn.Linear(M,H) , # M은 INPUT의 사이즈이고 엠니스트라서 784이다. H는 히든레이어 뉴런갯수로 512이다
+
+	self.layer2 = nn.Sequential(
+		nn.Linear(H,N) #2단계에서는 INPUT이 히든레이어 512이고, 출력분류 클래스 10개가 OUTPUT이다.
+
+*******중요
+
+Epoch : 에포크는 무조건 전체 데이터셋 한번 돈 경우
+Iteration은 하나의 미니배치를 한번 돈 경우,
+즉 미니 배치를 n번 돌려서 전체 데이터셋이 한번 다 돌았으면 1에포크이고 , n 이터레이션이다.
+
+learning rate이 작을 수록 로컬미니멈에 빠진다.
+
+batch size는 batch한개에 들어가는 data의 갯수이다. 즉  전체데이터 / mini batch 개수
+
+**********
+overfitting 막기위해 mini_batch의 순서를 바꾸는 shuffle을 True로 설정
+
+
+***********매우 중요
+예측 모델을 좀 더 일반화 시키고 싶을때는
+
+얼리스타핑, 드롭아웃, 배치노멀라이제이션을 활성화함수 앞에 적용

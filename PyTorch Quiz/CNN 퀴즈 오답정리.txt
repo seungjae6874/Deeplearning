@@ -1,0 +1,38 @@
+CNN 퀴즈 정답 및 오답 정리
+
+1.파이토치의 필터 이미지 CONV는 torch.nn.Conv2d(InputChannel, Output Channel,filter Size)이다.
+ 또한 입력 이미지에 대해서는 torch.nn.Conv2d(Batch_size, Channel, Height,Width)이다.
+(이는 흑백이미지라서 2d사용 케이스이고, 항상 입력이미지는 채널,높이너비순)
+
+****CNN은 파라미터의 수를 줄여주기 때문에 DNN에 비해 overfitting 발생 가능성이
+적다.
+
+2.필터 생성 코드
+ conv = torch.nn.Conv2d(input채널,output채널,filter사이즈)
+
+4. output 피쳐의 사이즈는 N-f+2p/s의 가우스에 더하기 1이다.
+
+6.맥스풀링함수를 적용할때는 kernel의 제곱크기만큼의 필터라고 생각하고
+ 해당 필터의 칸의 합을 output의 한칸이라고 생각하고 계산하면 된다.
+그냥 필터 계산과 똑같이 하면 됨. 맥스풀링에서 스트라이드가 안주어지면 
+필터크기와 스트라이드의 크기가 같다고 생각하면 됨 왜냐면 맥스풀링시에
+필터가 서로 겹쳐선 안되므로
+
+
+7.*****************완전연결층 중요
+
+ 마지막에 out = out.view(out.size(0),-1)로 하는 선언은
+ 한줄 벡터로 만들기 위해 flatten해주는 것이다.
+
+
+8.device = 'cuda' if torch.cuda.is_available() else 'cpu'를 통해서 학습할 양이 많을 때는
+GPU를 사용하게 해주고 그리고 dataloader, 입력데이터들,손실함수그리고 
+모델 model = CNN().to(device)에 device를 적용해주면 된다.
+
+
+9.VGG는 VISUAL GEOMETRY GROUP의 약자로 옥스포드에서 모델의 깊이와 구조에 변화를 줌
+CONV LAYER를 3*3의 S=1 P=1만을 이용한 것이 특징이다.
+
+10. 레스넷은 Shortcut connection으로 활성화함수에서 층이 깊어질 수록 기울기가
+감소하거나 급격히 커짐을 방지하기위해 값을 단계를 뛰어
+넘어  그대로 값을 넘김을 이용한다.
